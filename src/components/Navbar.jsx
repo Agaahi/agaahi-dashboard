@@ -3,6 +3,7 @@ import logo from "../assets/logo-white.png";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import NavbarLink from "./NavbarLink";
 
 const Navbar = ({ signOut }) => {
   return (
@@ -19,44 +20,10 @@ const Navbar = ({ signOut }) => {
             </div>
           </div>
         </NavLink>
-        <div className="row-span-1 grid items-center">
-          <NavLink
-            to="/dashboard-home"
-            className={({ isActive }) =>
-              isActive
-                ? "underline font-serif text-xl text-white text-left"
-                : "font-serif text-xl text-white text-left"
-            }
-          >
-            Home
-          </NavLink>
-        </div>
 
-        <div className="row-span-1 grid items-center">
-          <NavLink
-            to="/dashboard-analytics"
-            className={({ isActive }) =>
-              isActive
-                ? "underline font-serif text-xl text-white text-left"
-                : "font-serif text-xl text-white text-left"
-            }
-          >
-            Analytics
-          </NavLink>
-        </div>
-
-        <div className="row-span-1 grid items-center">
-          <NavLink
-            to="/dashboard-map"
-            className={({ isActive }) =>
-              isActive
-                ? "underline font-serif text-xl text-white text-left"
-                : "font-serif text-xl text-white text-left"
-            }
-          >
-            Map
-          </NavLink>
-        </div>
+        <NavbarLink to="/dashboard-home" text="Home" />
+        <NavbarLink to="/dashboard-analytics" text="Analytics" />
+        <NavbarLink to="/dashboard-map" text="Map" />
 
         <div className="row-span-1 grid items-center justify-items-center">
           <NavLink to="/settings">
