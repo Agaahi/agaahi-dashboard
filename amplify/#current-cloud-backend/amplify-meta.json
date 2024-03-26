@@ -1,0 +1,58 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-agaahidashboard-dev-04339-authRole",
+      "UnauthRoleArn": "arn:aws:iam::891377024725:role/amplify-agaahidashboard-dev-04339-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::891377024725:role/amplify-agaahidashboard-dev-04339-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-agaahidashboard-dev-04339-deployment",
+      "UnauthRoleName": "amplify-agaahidashboard-dev-04339-unauthRole",
+      "StackName": "amplify-agaahidashboard-dev-04339",
+      "StackId": "arn:aws:cloudformation:us-west-1:891377024725:stack/amplify-agaahidashboard-dev-04339/03455c80-ea73-11ee-a106-02a9bc004b25",
+      "AmplifyAppId": "daf81rxrau2uy"
+    }
+  },
+  "auth": {
+    "agaahidashboard212851b4": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-agaahidashboard-dev-04339-deployment/amplify-cfn-templates/auth/agaahidashboard212851b4-cloudformation-template.json",
+        "logicalId": "authagaahidashboard212851b4"
+      },
+      "lastPushTimeStamp": "2024-03-25T06:48:02.485Z",
+      "output": {
+        "UserPoolId": "us-west-1_oQYe3K9IT",
+        "AppClientIDWeb": "758kqtf6bgif5o0k8634hdb9ea",
+        "AppClientID": "ole515le906sngn2dvade9as2",
+        "IdentityPoolId": "us-west-1:9ad2f7a0-d11a-4105-8271-7b785e07040d",
+        "UserPoolArn": "arn:aws:cognito-idp:us-west-1:891377024725:userpool/us-west-1_oQYe3K9IT",
+        "IdentityPoolName": "agaahidashboard212851b4_identitypool_212851b4__dev",
+        "UserPoolName": "agaahidashboard212851b4_userpool_212851b4"
+      },
+      "lastPushDirHash": "z0mnNIPbJ3U6zsjxx3fLxzIheJk="
+    }
+  }
+}
