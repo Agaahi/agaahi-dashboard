@@ -22,6 +22,7 @@ const Navbar = ({ signOut }) => {
         </NavLink>
 
         <NavbarLink to="/dashboard-home" text="Home" />
+        <NavbarLink to="/dashboard-analytics" text="Historical Data" />
         <NavbarLink to="/dashboard-analytics" text="Analytics" />
         <NavbarLink to="/dashboard-map" text="Map" />
 

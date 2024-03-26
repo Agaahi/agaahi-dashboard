@@ -9,9 +9,12 @@ const App = ({ signOut, user }) => {
 
   return (
     <>
-      <div className="grid grid-cols-2 grid-rows-1 gap-2 h-screen">
+      <div className="grid grid-cols-[auto,1fr] grid-rows-1 h-screen">
         <div className="w-60">
           <Navbar signOut={signOut} />
+        </div>
+        <div>
+          <HomeDashboard />
         </div>
       </div>
     </>
