@@ -1,0 +1,91 @@
+{
+  "hash": "c624b821",
+  "configHash": "c56ecba5",
+  "lockfileHash": "8f1fe4e3",
+  "browserHash": "6e575dec",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "20d142e2",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "16b90d8e",
+      "needsInterop": true
+    },
+    "aws-amplify": {
+      "src": "../../node_modules/aws-amplify/dist/esm/index.mjs",
+      "file": "aws-amplify.js",
+      "fileHash": "5c7a1bde",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "07197937",
+      "needsInterop": false
+    },
+    "@aws-amplify/ui-react": {
+      "src": "../../node_modules/@aws-amplify/ui-react/dist/esm/index.mjs",
+      "file": "@aws-amplify_ui-react.js",
+      "fileHash": "915227d1",
+      "needsInterop": false
+    },
+    "@fortawesome/react-fontawesome": {
+      "src": "../../node_modules/@fortawesome/react-fontawesome/index.es.js",
+      "file": "@fortawesome_react-fontawesome.js",
+      "fileHash": "eab634e5",
+      "needsInterop": false
+    },
+    "@fortawesome/free-solid-svg-icons": {
+      "src": "../../node_modules/@fortawesome/free-solid-svg-icons/index.mjs",
+      "file": "@fortawesome_free-solid-svg-icons.js",
+      "fileHash": "b08b50c6",
+      "needsInterop": false
+    },
+    "chart.js": {
+      "src": "../../node_modules/chart.js/dist/chart.js",
+      "file": "chart__js.js",
+      "fileHash": "a25b316d",
+      "needsInterop": false
+    },
+    "react-chartjs-2": {
+      "src": "../../node_modules/react-chartjs-2/dist/index.js",
+      "file": "react-chartjs-2.js",
+      "fileHash": "77ee7870",
+      "needsInterop": false
+    },
+    "@faker-js/faker": {
+      "src": "../../node_modules/@faker-js/faker/dist/esm/index.mjs",
+      "file": "@faker-js_faker.js",
+      "fileHash": "741a8655",
+      "needsInterop": false
+    },
+    "@vis.gl/react-google-maps": {
+      "src": "../../node_modules/@vis.gl/react-google-maps/dist/index.modern.mjs",
+      "file": "@vis__gl_react-google-maps.js",
+      "fileHash": "d8974b25",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-U7TJCCDO": {
+      "file": "chunk-U7TJCCDO.js"
+    },
+    "chunk-4ZSTBHIF": {
+      "file": "chunk-4ZSTBHIF.js"
+    },
+    "chunk-HAZNF34R": {
+      "file": "chunk-HAZNF34R.js"
+    },
+    "chunk-DQ4UTXVP": {
+      "file": "chunk-DQ4UTXVP.js"
+    },
+    "chunk-WXXH56N5": {
+      "file": "chunk-WXXH56N5.js"
+    }
+  }
+}

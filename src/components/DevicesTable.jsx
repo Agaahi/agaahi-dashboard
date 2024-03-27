@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Card } from "@aws-amplify/ui-react";
+import { Card, Loader } from "@aws-amplify/ui-react";
 
-const DevicesTable = ({ devices, onDeviceSelect, selectedDevice }) => {
+const DevicesTable = ({ devices, onDeviceSelect, selectedDevice, loading }) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (e) => {
@@ -9,7 +9,7 @@ const DevicesTable = ({ devices, onDeviceSelect, selectedDevice }) => {
   };
 
   const filteredDevices = devices.filter((device) =>
-    device.name.toLowerCase().includes(searchQuery.toLowerCase())
+    device.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleCardClick = (deviceId) => {
@@ -18,23 +18,29 @@ const DevicesTable = ({ devices, onDeviceSelect, selectedDevice }) => {
 
   return (
     <div className="p-5 min-h-full rounded overflow-auto shadow-lg bg-neutral-200 flex flex-col gap-2">
-      <input
-        type="text"
-        placeholder="Search devices..."
-        value={searchQuery}
-        onChange={handleSearch}
-      />
-      {filteredDevices.map((device) => (
-        <Card
-          key={device.id}
-          className={`rounded hover:bg-green-600 ${
-            selectedDevice === device.id ? "bg-green-600" : ""
-          }`}
-          onClick={() => handleCardClick(device.id)}
-        >
-          <h3>Device ID: {device.id}</h3>
-        </Card>
-      ))}
+      {loading ? (
+        <Loader size="large" className="mx-auto" variation="linear" />
+      ) : (
+        <>
+          <input
+            type="text"
+            placeholder="Search devices..."
+            value={searchQuery}
+            onChange={handleSearch}
+          />
+          {filteredDevices.map((device) => (
+            <Card
+              key={device}
+              className={`rounded hover:bg-green-600 ${
+                selectedDevice === device ? "bg-green-600" : ""
+              }`}
+              onClick={() => handleCardClick(device)}
+            >
+              <h3>Device ID: {device}</h3>
+            </Card>
+          ))}
+        </>
+      )}
     </div>
   );
 };
