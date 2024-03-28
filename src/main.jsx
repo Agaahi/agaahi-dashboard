@@ -7,7 +7,7 @@ import ViewerDashboard from "./pages/ViewerDashboard";
 import Settings from "./pages/Settings";
 import { Amplify } from "aws-amplify";
 import "./index.css";
-import amplifyconfig from "./amplifyconfiguration.json";
+import amplifyconfig from "./aws-exports.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DashboardAnalytics from "./pages/DashboardAnalytics.jsx";
 Amplify.configure(amplifyconfig);
