@@ -1,0 +1,123 @@
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Mutation {
+  createNVIDIAJetson(input: CreateNVIDIAJetsonInput!): NVIDIAJetson
+  deleteNVIDIAJetson(input: DeleteNVIDIAJetsonInput!): NVIDIAJetson
+  updateNVIDIAJetson(input: UpdateNVIDIAJetsonInput!): NVIDIAJetson
+}
+
+type NVIDIAJetson {
+  data: AWSJSON!
+  device_id: String!
+  timestamp: AWSTimestamp!
+}
+
+type NVIDIAJetsonConnection {
+  items: [NVIDIAJetson]
+  nextToken: String
+}
+
+type Query {
+  getNVIDIAJetson(device_id: String!, timestamp: AWSTimestamp!): NVIDIAJetson
+  listNVIDIAJetsons(filter: TableNVIDIAJetsonFilterInput, limit: Int, nextToken: String): NVIDIAJetsonConnection
+}
+
+type Subscription {
+  onCreateNVIDIAJetson(data: AWSJSON, device_id: String, timestamp: AWSTimestamp): NVIDIAJetson @aws_subscribe(mutations : ["createNVIDIAJetson"])
+  onDeleteNVIDIAJetson(data: AWSJSON, device_id: String, timestamp: AWSTimestamp): NVIDIAJetson @aws_subscribe(mutations : ["deleteNVIDIAJetson"])
+  onUpdateNVIDIAJetson(data: AWSJSON, device_id: String, timestamp: AWSTimestamp): NVIDIAJetson @aws_subscribe(mutations : ["updateNVIDIAJetson"])
+}
+
+input CreateNVIDIAJetsonInput {
+  data: AWSJSON!
+  device_id: String!
+  timestamp: AWSTimestamp!
+}
+
+input DeleteNVIDIAJetsonInput {
+  device_id: String!
+  timestamp: AWSTimestamp!
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input TableBooleanFilterInput {
+  attributeExists: Boolean
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableFloatFilterInput {
+  attributeExists: Boolean
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input TableIDFilterInput {
+  attributeExists: Boolean
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input TableIntFilterInput {
+  attributeExists: Boolean
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input TableNVIDIAJetsonFilterInput {
+  device_id: TableStringFilterInput
+  timestamp: TableIntFilterInput
+}
+
+input TableStringFilterInput {
+  attributeExists: Boolean
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input UpdateNVIDIAJetsonInput {
+  data: AWSJSON
+  device_id: String!
+  timestamp: AWSTimestamp!
+}
