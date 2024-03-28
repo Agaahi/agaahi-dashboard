@@ -1,24 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { generateClient } from "aws-amplify/api";
+import { listNVIDIAJetsons } from "../graphql/queries";
 import { Card, Loader } from "@aws-amplify/ui-react";
 
-const DevicesTable = ({ devices, onDeviceSelect, selectedDevice, loading }) => {
+const DevicesTable = ({ setSelectedDevice, selectedDevice }) => {
+  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [deviceIDs, setDevicesIDs] = useState([]);
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  const filteredDevices = devices.filter((device) =>
+  const filteredDevices = deviceIDs.filter((device) =>
     device.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleCardClick = (deviceId) => {
-    onDeviceSelect(deviceId);
+    setSelectedDevice(deviceId);
   };
+
+  useEffect(() => {
+    const client = generateClient();
+    // Fetch devices
+    const fetchDevices = async () => {
+      try {
+        const deviceData = await client.graphql({ query: listNVIDIAJetsons });
+        console.log("Devices:", deviceData.data.listNVIDIAJetsons.items);
+        setDevicesIDs([
+          ...new Set(
+            deviceData.data.listNVIDIAJetsons.items.map(
+              (item) => item.device_id
+            )
+          ),
+        ]);
+        const initialCount = JSON.parse(
+          deviceData.data.listNVIDIAJetsons.items[0]["data"]
+        );
+        setSelectedDevice(deviceData.data.listNVIDIAJetsons.items[0].device_id);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching devices:", error);
+      }
+    };
+    fetchDevices();
+  }, []);
 
   return (
     <div className="p-5 min-h-full rounded overflow-auto shadow-lg bg-neutral-200 flex flex-col gap-2">
-      {loading ? (
+      {isLoading ? (
         <Loader size="large" className="mx-auto" variation="linear" />
       ) : (
         <>
@@ -27,6 +57,7 @@ const DevicesTable = ({ devices, onDeviceSelect, selectedDevice, loading }) => {
             placeholder="Search devices..."
             value={searchQuery}
             onChange={handleSearch}
+            className=" p-2 rounded border border-gray-300"
           />
           {filteredDevices.map((device) => (
             <Card

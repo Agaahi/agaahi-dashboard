@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "@aws-amplify/ui-react/styles.css";
 
 import Navbar from "../components/Navbar";
-import HomeDashboard from "./HomeDashboard";
+import { Outlet } from "react-router-dom";
 const ViewerDashboard = () => {
   const [currentPage, setCurrentPage] = useState("HomeDashboard");
   const navigateToPage = (pageName) => {
@@ -16,7 +16,7 @@ const ViewerDashboard = () => {
           <Navbar navigate={navigateToPage} />
         </div>
         <div>
-          <HomeDashboard />
+          <Outlet />
         </div>
       </div>
     </>

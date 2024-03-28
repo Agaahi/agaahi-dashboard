@@ -75,7 +75,6 @@ function convertTimestampToHHMMSS(timestamp) {
 
 const HomeDashboard = () => {
   const [selectedDevice, setSelectedDevice] = useState(null);
-  const [deviceIDs, setDevicesIDs] = useState([]);
   const [allDeviceData, setAllDeviceData] = useState({});
   const [countData, setCountData] = useState({});
   const [count, setCount] = useState({});
@@ -88,15 +87,7 @@ const HomeDashboard = () => {
     const fetchDevices = async () => {
       try {
         const deviceData = await client.graphql({ query: listNVIDIAJetsons });
-        console.log("Devices:", deviceData.data.listNVIDIAJetsons.items);
         setAllDeviceData(deviceData.data.listNVIDIAJetsons.items);
-        setDevicesIDs([
-          ...new Set(
-            deviceData.data.listNVIDIAJetsons.items.map(
-              (item) => item.device_id
-            )
-          ),
-        ]);
         const initialCount = JSON.parse(
           deviceData.data.listNVIDIAJetsons.items[0]["data"]
         );
@@ -104,7 +95,6 @@ const HomeDashboard = () => {
           count: initialCount["count"]["N"],
           timestamp: deviceData.data.listNVIDIAJetsons.items[0].timestamp,
         });
-        setSelectedDevice(deviceData.data.listNVIDIAJetsons.items[0].device_id);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching devices:", error);
@@ -138,6 +128,7 @@ const HomeDashboard = () => {
     return () => subscription.unsubscribe();
   }, []); // Empty dependency array means this effect runs once on mount
 
+  // live updates
   useEffect(() => {
     // Check if countData is not empty and matches the selected device
     if (countData && countData.device_id === selectedDevice) {
@@ -171,6 +162,7 @@ const HomeDashboard = () => {
     }
   }, [countData]);
 
+  // changing device
   useEffect(() => {
     if (selectedDevice && allDeviceData.length > 0) {
       const deviceData = allDeviceData
@@ -181,7 +173,6 @@ const HomeDashboard = () => {
       // Ensure deviceData is not empty before proceeding
       if (deviceData.length > 0) {
         const mostRecentData = deviceData[0]; // The most recent entry
-        console.log("Most recent device data is: ", mostRecentData);
 
         // Parse the "data" field to extract the count
         const parsedData = JSON.parse(mostRecentData["data"]);
@@ -238,30 +229,9 @@ const HomeDashboard = () => {
     <div className="grid grid-cols-3 grid-rows-[min-content,1fr] gap-10 p-12 min-h-screen">
       <div className="col-span-3 flex flex-row justify-around max-h-[500px] overflow-hidden">
         <DashboardWidget
-          display={
-            <>
-              <h1 className="text-3xl text-center font-sans">
-                Real Time Count
-              </h1>
-              <div className="flex justify-center items-center">
-                {isLoading ? (
-                  <Loader size="large" className="mx-auto" />
-                ) : (
-                  <>
-                    <h1 className="text-5xl font-sans mr-2">
-                      {count["count"]}
-                    </h1>
-                    <FontAwesomeIcon
-                      icon={faSatelliteDish}
-                      color="red"
-                      size="xl"
-                      className="animate-pulse"
-                    />
-                  </>
-                )}
-              </div>
-            </>
-          }
+          title={"Real Time Count"}
+          value={count["count"]}
+          color="blue"
         />
       </div>
       <div className="col-span-3 h-full">
@@ -269,41 +239,15 @@ const HomeDashboard = () => {
           <div className="col-span-1">
             <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
               <Map zoom={12} center={{ lat: 51.05011, lng: -114.08529 }}>
-                <Marker position={{ lat: 51.05011, lng: -114.08529 }} />
-                <Marker
-                  position={{ lat: 51.05011 + 0.005, lng: -114.08529 + 0.005 }}
-                />
-                <Marker
-                  position={{ lat: 51.05011 - 0.01, lng: -114.08529 - 0.01 }}
-                />
-                <Marker
-                  position={{ lat: 51.05011 + 0.015, lng: -114.08529 + 0.015 }}
-                />
-                <Marker
-                  position={{ lat: 51.05011 - 0.02, lng: -114.08529 - 0.002 }}
-                />
-                <Marker
-                  position={{ lat: 51.05011 + 0.025, lng: -114.08529 + 0.025 }}
-                />
-                <Marker
-                  position={{ lat: 51.05011 - 0.025, lng: -114.08529 - 0.03 }}
-                />
-                <Marker
-                  position={{ lat: 51.05011 + 0.035, lng: -114.08529 + 0.01 }}
-                />
-                <Marker
-                  position={{ lat: 51.05011 - 0.04, lng: -114.08529 - 0.02 }}
-                />
+                <Marker position={{ lat: 51.07844, lng: -114.12864 }} />
               </Map>
             </APIProvider>
           </div>
           <div className="col-span-1 flex flex-col h-full ">
             <div className="flex-1 overflow-auto max-h-60">
               <DevicesTable
-                devices={deviceIDs}
-                onDeviceSelect={setSelectedDevice}
+                setSelectedDevice={setSelectedDevice}
                 selectedDevice={selectedDevice}
-                loading={isLoading}
               />
             </div>
             <div className="flex-1">
