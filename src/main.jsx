@@ -59,7 +59,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {console.log("AMplify COnfig: ", Amplify.getConfig())}
     <RouterProvider router={router} />
   </React.StrictMode>
 );
