@@ -117,7 +117,7 @@ const DashboardHistory = () => {
             <FontAwesomeIcon icon={faArrowsRotate} />
           </button>
         </div>
-        <div className="overflow-auto h-4/6 bg-white rounded-lg">
+        <div className="overflow-auto max-h-4/6 bg-white rounded-lg">
           {isLoading ? (
             <Loader size="large" className="mx-auto" variation="linear" />
           ) : (
