@@ -10,6 +10,7 @@ import "./index.css";
 import amplifyconfig from "./amplifyconfiguration.json";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DashboardAnalytics from "./pages/DashboardAnalytics.jsx";
+Amplify.configure(amplifyconfig);
 const router = createBrowserRouter([
   {
     path: "auth", // Use a base path for AppLayout
@@ -31,8 +32,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-Amplify.configure(amplifyconfig);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { generateClient } from "aws-amplify/api";
 import { listNVIDIAJetsons } from "../graphql/queries";
 import { Card, Loader } from "@aws-amplify/ui-react";
-import { Amplify } from "aws-amplify";
-import amplifyconfig from "../amplifyconfiguration.json";
-Amplify.configure(amplifyconfig);
 
 const DevicesTable = ({ setSelectedDevice, selectedDevice }) => {
   const [isLoading, setIsLoading] = useState(true);
