@@ -16,5 +16,23 @@
         "agaahidashboard212851b4": {}
       }
     }
+  },
+  "saud": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-agaahidashboard-saud-222903-authRole",
+      "UnauthRoleArn": "arn:aws:iam::891377024725:role/amplify-agaahidashboard-saud-222903-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::891377024725:role/amplify-agaahidashboard-saud-222903-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-agaahidashboard-saud-222903-deployment",
+      "UnauthRoleName": "amplify-agaahidashboard-saud-222903-unauthRole",
+      "StackName": "amplify-agaahidashboard-saud-222903",
+      "StackId": "arn:aws:cloudformation:us-east-1:891377024725:stack/amplify-agaahidashboard-saud-222903/8afd4090-ebf2-11ee-9d3e-0ef404328cd7",
+      "AmplifyAppId": "d1tjzfh0bvq109"
+    },
+    "categories": {
+      "auth": {
+        "agaahidashboard212851b4": {}
+      }
+    }
   }
 }

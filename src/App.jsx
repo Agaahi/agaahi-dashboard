@@ -1,20 +1,23 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { withAuthenticator, Button, Heading } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-import HomeDashboard from "./pages/HomeDashboard";
-import Navbar from "./components/Navbar";
 
+import Navbar from "./components/Navbar";
+import { Outlet } from "react-router-dom";
 const App = ({ signOut, user }) => {
-  const [count, setCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState("HomeDashboard");
+  const navigateToPage = (pageName) => {
+    setCurrentPage(pageName);
+  };
 
   return (
     <>
       <div className="grid grid-cols-[auto,1fr] grid-rows-1 h-screen">
         <div className="w-60">
-          <Navbar signOut={signOut} />
+          <Navbar signOut={signOut} navigate={navigateToPage} user={user} />
         </div>
         <div>
-          <HomeDashboard />
+          <Outlet />
         </div>
       </div>
     </>
