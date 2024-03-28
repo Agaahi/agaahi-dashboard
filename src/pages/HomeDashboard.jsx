@@ -13,6 +13,9 @@ import {
 import { Line } from "react-chartjs-2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSatelliteDish } from "@fortawesome/free-solid-svg-icons";
+import { Amplify } from "aws-amplify";
+import amplifyconfig from "../amplifyconfiguration.json";
+Amplify.configure(amplifyconfig);
 
 import { generateClient } from "aws-amplify/api";
 import { listNVIDIAJetsons } from "../graphql/queries";

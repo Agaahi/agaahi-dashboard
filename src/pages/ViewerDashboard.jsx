@@ -3,6 +3,7 @@ import "@aws-amplify/ui-react/styles.css";
 
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
+
 const ViewerDashboard = () => {
   const [currentPage, setCurrentPage] = useState("HomeDashboard");
   const navigateToPage = (pageName) => {

@@ -14,6 +14,9 @@ import { generateClient } from "aws-amplify/api";
 import { listNVIDIAJetsons } from "../graphql/queries";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import { Amplify } from "aws-amplify";
+import amplifyconfig from "../amplifyconfiguration.json";
+Amplify.configure(amplifyconfig);
 
 const DashboardHistory = () => {
   const [startDate, setStartDate] = useState(new Date());

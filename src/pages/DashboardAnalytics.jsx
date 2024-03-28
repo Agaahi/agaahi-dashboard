@@ -13,6 +13,9 @@ import DevicesTable from "../components/DevicesTable";
 import { generateClient } from "aws-amplify/api";
 import { listNVIDIAJetsons } from "../graphql/queries";
 import * as subscriptions from "../graphql/subscriptions";
+import amplifyconfig from "../amplifyconfiguration.json";
+import { Amplify } from "aws-amplify";
+Amplify.configure(amplifyconfig);
 
 const DashboardAnalytics = () => {
   const [isLoading, setIsLoading] = useState(true);
