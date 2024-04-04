@@ -75,13 +75,13 @@ const DashboardAnalytics = () => {
 
         if (index !== -1) {
           // Update the existing entry's count
-          updatedParsedData[index].count = JSON.parse(countData.data).count?.N;
+          updatedParsedData[index].count = JSON.parse(countData.data)?.count;
         } else {
           // Add new entry if it doesn't exist
           updatedParsedData.push({
             formattedTimestamp: new Date(countData.timestamp).toLocaleString(),
             device_id: countData.device_id,
-            count: JSON.parse(countData.data).count?.N,
+            count: JSON.parse(countData.data)?.count,
           });
         }
 
@@ -144,7 +144,7 @@ const DashboardAnalytics = () => {
             return {
               formattedTimestamp: new Date(device.timestamp).toLocaleString(),
               device_id: device.device_id,
-              count: JSON.parse(device.data).count?.N,
+              count: JSON.parse(device.data)?.count,
             };
           })
           .sort(
@@ -174,7 +174,7 @@ const DashboardAnalytics = () => {
             color="green"
           />
         </div>
-        <div className="overflow-auto max-h-4/6 bg-white rounded-lg">
+        <div className="overflow-y-scroll max-h-96 bg-white rounded-lg">
           {isLoading ? (
             <Loader size="large" className="mx-auto" variation="linear" />
           ) : (

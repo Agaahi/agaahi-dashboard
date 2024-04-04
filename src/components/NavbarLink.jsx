@@ -9,8 +9,8 @@ const NavbarLink = ({ to, text }) => {
           to={to}
           className={({ isActive }) =>
             isActive
-              ? "underline font-serif text-xl text-white text-left"
-              : "font-serif text-xl text-white text-left"
+              ? "underline font-sans text-xl text-white text-left"
+              : "font-sans text-xl text-white text-left"
           }
         >
           {text}

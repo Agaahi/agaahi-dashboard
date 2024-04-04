@@ -92,7 +92,7 @@ const HomeDashboard = () => {
           deviceData.data.listNVIDIAJetsons.items[0]["data"]
         );
         setCount({
-          count: initialCount["count"]["N"],
+          count: initialCount.count,
           timestamp: deviceData.data.listNVIDIAJetsons.items[0].timestamp,
         });
         setIsLoading(false);
@@ -109,6 +109,7 @@ const HomeDashboard = () => {
       .subscribe({
         next: (response) => {
           const { data } = response;
+          console.log(response);
           setAllDeviceData((prevAllDeviceData) => {
             const updatedAllDeviceData = [
               ...prevAllDeviceData,
@@ -134,7 +135,7 @@ const HomeDashboard = () => {
     if (countData && countData.device_id === selectedDevice) {
       // Assuming countData.data is a JSON string that needs parsing
       const parsedCount = JSON.parse(countData.data); // Ensure countData["data"] exists and is correct
-      const newCount = parsedCount.count?.N; // Safely access "N" in case it doesn't exist
+      const newCount = JSON.parse(parsedCount.count); // Safely access "N" in case it doesn't exist
 
       if (newCount !== undefined) {
         setCount({
@@ -176,7 +177,7 @@ const HomeDashboard = () => {
 
         // Parse the "data" field to extract the count
         const parsedData = JSON.parse(mostRecentData["data"]);
-        const countData = parsedData["count"]["N"];
+        const countData = parsedData?.count;
         const timestamp = mostRecentData.timestamp;
 
         // Update count state with the most recent count
@@ -203,7 +204,7 @@ const HomeDashboard = () => {
 
         const counts = deviceData
           .slice(0, 10)
-          .map((device) => JSON.parse(device.data).count.N)
+          .map((device) => JSON.parse(device.data)?.count)
           .reverse();
 
         // Update graph data with labels and corresponding counts

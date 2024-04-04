@@ -51,7 +51,7 @@ const DashboardHistory = () => {
           return {
             formattedTimestamp: new Date(device.timestamp).toLocaleString(),
             device_id: device.device_id,
-            count: JSON.parse(device.data).count?.N,
+            count: JSON.parse(device.data)?.count,
           };
         })
         .sort(
@@ -117,7 +117,7 @@ const DashboardHistory = () => {
             <FontAwesomeIcon icon={faArrowsRotate} />
           </button>
         </div>
-        <div className="overflow-auto max-h-4/6 bg-white rounded-lg">
+        <div className="overflow-auto max-h-96 bg-white rounded-lg">
           {isLoading ? (
             <Loader size="large" className="mx-auto" variation="linear" />
           ) : (
