@@ -229,20 +229,28 @@ const HomeDashboard = () => {
   return (
     <div className="grid grid-cols-3 grid-rows-[min-content,1fr] gap-10 p-12 min-h-screen">
       <div className="col-span-3 flex flex-row justify-around max-h-[500px] overflow-hidden">
-        <DashboardWidget
-          title={"Real Time Count"}
-          value={count["count"]}
-          color="blue"
-        />
+        {isLoading ? (
+          <Loader size="large" className="mx-auto" />
+        ) : (
+          <DashboardWidget
+            title={"Real Time Count"}
+            value={count["count"]}
+            color="blue"
+          />
+        )}
       </div>
       <div className="col-span-3 h-full">
         <div className="grid grid-cols-2 gap-5 p-5 h-full">
           <div className="col-span-1">
-            <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
-              <Map zoom={12} center={{ lat: 51.05011, lng: -114.08529 }}>
-                <Marker position={{ lat: 51.07844, lng: -114.12864 }} />
-              </Map>
-            </APIProvider>
+            {isLoading ? (
+              <Loader size="large" className="mx-auto" variation="linear" />
+            ) : (
+              <APIProvider apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}>
+                <Map zoom={12} center={{ lat: 51.05011, lng: -114.08529 }}>
+                  <Marker position={{ lat: 51.07844, lng: -114.12864 }} />
+                </Map>
+              </APIProvider>
+            )}
           </div>
           <div className="col-span-1 flex flex-col h-full ">
             <div className="flex-1 overflow-auto max-h-60">

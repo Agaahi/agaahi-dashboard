@@ -47,7 +47,7 @@ const DevicesTable = ({ setSelectedDevice, selectedDevice }) => {
   }, []);
 
   return (
-    <div className="p-5 min-h-full rounded overflow-auto shadow-lg bg-neutral-200 flex flex-col gap-2">
+    <div className="p-5 min-h-full rounded overflow-auto shadow-lg bg-neutral-100 flex flex-col gap-2">
       {isLoading ? (
         <Loader size="large" className="mx-auto" variation="linear" />
       ) : (
@@ -57,17 +57,17 @@ const DevicesTable = ({ setSelectedDevice, selectedDevice }) => {
             placeholder="Search devices..."
             value={searchQuery}
             onChange={handleSearch}
-            className=" p-2 rounded border border-gray-300"
+            className=" p-2 rounded-xl border border-gray-300"
           />
           {filteredDevices.map((device) => (
             <Card
               key={device}
               className={`rounded hover:bg-green-600 ${
-                selectedDevice === device ? "bg-green-600" : ""
+                selectedDevice === device ? "bg-green-500" : ""
               }`}
               onClick={() => handleCardClick(device)}
             >
-              <h3>Device ID: {device}</h3>
+              <h3 className="text-white">Device ID: {device}</h3>
             </Card>
           ))}
         </>

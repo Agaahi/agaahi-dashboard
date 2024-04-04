@@ -1,12 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSatelliteDish } from "@fortawesome/free-solid-svg-icons";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
 const colorClasses = {
   indigo: "bg-indigo-600",
   red: "bg-red-600",
   blue: "bg-blue-600",
   green: "bg-green-600",
+  teal: "bg-teal-500",
+  cyan: "bg-cyan-500",
 };
 
 const DashboardWidget = ({ title, value, color = "indigo" }) => {
@@ -20,9 +22,10 @@ const DashboardWidget = ({ title, value, color = "indigo" }) => {
       <p className="text-2xl font-bold text-white">
         {value}{" "}
         <FontAwesomeIcon
-          icon={faSatelliteDish}
+          icon={faCircle}
           color="red"
           className="animate-pulse"
+          size="2xs"
         />
       </p>
     </div>

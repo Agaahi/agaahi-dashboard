@@ -22,7 +22,6 @@ const DashboardAnalytics = () => {
   const [parsedData, setParsedData] = useState([]);
   const [median, setMedian] = useState(0);
   const [average, setAverage] = useState(0);
-  const [totalCount, setTotalCount] = useState(0);
 
   const fetchDevices = async () => {
     setIsLoading(true); // Start loading
@@ -120,13 +119,10 @@ const DashboardAnalytics = () => {
       const averageCount = totalCount / parsedData.length;
       const counts = parsedData.map((entry) => parseInt(entry.count));
       const medianCount = calculateMedian(counts);
-
-      setTotalCount(totalCount);
       setMedian(medianCount);
       setAverage(averageCount.toFixed(2)); // Assuming you want average to be a fixed decimal place value
     } else {
       // Reset statistics if there's no data
-      setTotalCount(0);
       setMedian(0);
       setAverage(0);
     }
@@ -166,13 +162,16 @@ const DashboardAnalytics = () => {
       <div className="flex-1">
         <div className="flex justify-center gap-8 items-center mb-10">
           {/* Styling for Average */}
-          <DashboardWidget title="Average" value={average} color="indigo" />
-          <DashboardWidget title="Median" value={median} color="blue" />
-          <DashboardWidget
-            title="Total Count"
-            value={totalCount}
-            color="green"
-          />
+          {isLoading ? (
+            <Loader size="large" className="mx-auto" />
+          ) : (
+            <DashboardWidget title="Average" value={average} color="teal" />
+          )}
+          {isLoading ? (
+            <Loader size="large" className="mx-auto" />
+          ) : (
+            <DashboardWidget title="Median" value={median} color="blue" />
+          )}
         </div>
         <div className="overflow-y-scroll max-h-96 bg-white rounded-lg">
           {isLoading ? (
